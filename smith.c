@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define COMPUTATIONS 100000										/* This is a program that finds all the Smith numbers among 100.000 random numbers and displays the percentage */
+#define COMPUTATIONS 100000			
+
+/* This is a program that finds all the Smith numbers among 100.000 random numbers and displays the percentage */
 
 int main(void)
 {
@@ -16,14 +18,14 @@ int main(void)
 		tempnum = number;
 		while (tempnum % 2 == 0) {
 			temp_for_sumdigs = 2;	
-			while (temp_for_sumdigs != 0){												/* Finds the number's "2" factors */
+			while (temp_for_sumdigs != 0){			/* Finds the number's "2" factors */
 				sum_factors = sum_factors + temp_for_sumdigs % 10;
 				temp_for_sumdigs = temp_for_sumdigs / 10;
 			}
 			tempnum = tempnum / 2;
 		}
 		factor = 3;
-		while (factor*factor <= tempnum){												/* Finds the number's prime factors starting from 3 */
+		while (factor*factor <= tempnum){			/* Finds the number's prime factors starting from 3 */
 			while (tempnum % factor == 0){
 				prime_sum = factor;
 				while (prime_sum != 0){
@@ -34,7 +36,7 @@ int main(void)
 			}
 			factor = factor + 2;	
 		}
-		if((tempnum != 1) && (sum_factors != 0)){																/* If tempnum > factor*factor then at this point the program finds the remaining prime factors that have usually high values */
+		if((tempnum != 1) && (sum_factors != 0)){	/* If tempnum > factor*factor then at this point the program finds the remaining prime factors that have usually high values */
 			prime_sum2 = tempnum;
 			while (prime_sum2 != 0){
 				sum_factors = sum_factors + prime_sum2 % 10;
@@ -43,11 +45,11 @@ int main(void)
 		}
 		tempnum2 = number;	
 		digs_sum = 0;	
-		while (tempnum2 != 0){															/* Finds the number's digits sum */
+		while (tempnum2 != 0){				/* Finds the number's digits sum */
 			digs_sum = digs_sum + tempnum2 % 10;
 			tempnum2 = tempnum2 / 10;	
 		}
-		if(sum_factors == digs_sum){														/* Checks if the number is a Smith number */
+		if(sum_factors == digs_sum){		/* Checks if the number is a Smith number */
 			count = count + 1;
 			printf(" %ld is a Smith number, sum is %ld \n", number, sum_factors);
 		}
